@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.viewitem.ViewitemFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="25dp"
+        android:paddingTop="25dp"
+        android:paddingRight="25dp"
+        android:paddingBottom="25dp">
+
+        <TextView
+            android:id="@+id/namaTokoViewItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/nama_toko"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/alamatTokoViewItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/alamat_toko"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/namaTokoViewItem" />
+
+        <TextView
+            android:id="@+id/deskripsiViewItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/deskripsi_toko"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/alamatTokoViewItem" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

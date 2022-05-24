@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="org.d3if0060.assessment2.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_viewitemFragment"
+            app:destination="@id/viewitemFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_additemFragment"
+            app:destination="@id/additemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="org.d3if0060.assessment2.ui.about.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" >
+        <action
+            android:id="@+id/action_aboutFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/additemFragment"
+        android:name="org.d3if0060.assessment2.ui.additem.AdditemFragment"
+        android:label="fragment_additem"
+        tools:layout="@layout/fragment_additem" >
+        <action
+            android:id="@+id/action_additemFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/viewitemFragment"
+        android:name="org.d3if0060.assessment2.ui.viewitem.ViewitemFragment"
+        android:label="fragment_viewitem"
+        tools:layout="@layout/fragment_viewitem" >
+        <action
+            android:id="@+id/action_viewitemFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="currToko"
+            app:argType="org.d3if0060.assessment2.data.TokoEntity" />
+    </fragment>
+</navigation>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Assessment2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="nama_toko">Toko Somthing</string>
+    <string name="alamat_toko">jl.slebew</string>
+    <string name="deskripsi_toko">disini menyediakan semua sarapan, mulai dari sarapan pagi sampai sarapan malam</string>
+    <string name="in_nama_toko">Nama Toko</string>
+    <string name="in_alamat_toko">Alamat Toko</string>
+    <string name="in_deskripsi_toko">Deskripsi Toko</string>
+    <string name="about">About</string>
+    <string name="tambah">Tambah</string>
+    <string name="about_content">Aplikasi ini menyediakan tempat-tempat nasi padang dengan nama beserta alamatnya</string>
+    <string name="about_love">Created with love by M. AFIF ZAIN for Assessment</string>
+    <string name="submit">Submit</string>
+    <string name="view">View</string>
+    <string name="delete">Delete</string>
+    <string name="share">Share</string>
+    <string name="share_template">
+        Nama Toko: %1$s\n
+        Alamat Toko: %2$s\n
+        Deskripsi Toko: %3$s
+    </string>
+</resources>
