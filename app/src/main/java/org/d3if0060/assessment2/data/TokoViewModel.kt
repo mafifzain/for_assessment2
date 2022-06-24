@@ -8,12 +8,8 @@ import org.d3if0060.assessment2.network.ApiStatus
 import org.d3if0060.assessment2.network.TokoApi
 
 class TokoViewModel(private val tokoDao: TokoDao): ViewModel() {
-    private val data = MutableLiveData<List<TokoImage>>()
 
-
-    init {
-
-    }
+    val data = tokoDao.getDataToko()
 
     fun addToko(tokoEntity: TokoEntity){
         viewModelScope.launch{
@@ -27,7 +23,6 @@ class TokoViewModel(private val tokoDao: TokoDao): ViewModel() {
         }
     }
 
-    fun getData(): LiveData<List<TokoImage>> = data
 
 }
 

@@ -9,7 +9,7 @@
         />
     <item
         android:id="@+id/image_menu"
-        android:title="@string/image"
+        android:title="@string/gambar_masakan"
         app:showAsAction="never"
         />
     <item

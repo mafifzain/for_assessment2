@@ -5,13 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModel
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import org.d3if0060.assessment2.R
-import org.d3if0060.assessment2.data.TokoViewModel
+import org.d3if0060.assessment2.data.TokoApplication
 import org.d3if0060.assessment2.databinding.FragmentImageBinding
 import org.d3if0060.assessment2.network.ApiStatus
 
@@ -19,6 +17,7 @@ class ImageFragment : Fragment() {
 
     private lateinit var binding : FragmentImageBinding
     private lateinit var imageAdapter: ImageAdapter
+    private lateinit var notificationManagerCompat: NotificationManagerCompat
 
     private val viewModel: ImageViewModel by lazy {
         ViewModelProvider(this)[ImageViewModel::class.java]
@@ -40,6 +39,7 @@ class ImageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        notificationManagerCompat = NotificationManagerCompat.from(requireActivity())
 
         viewModel.getData().observe(viewLifecycleOwner) {
             imageAdapter.updateData(it)
@@ -48,6 +48,16 @@ class ImageFragment : Fragment() {
         viewModel.getStatus().observe(viewLifecycleOwner) {
             updateProgress(it)
         }
+    }
+
+    private fun notifNetworkFailed(){
+        val builder = NotificationCompat.Builder(requireActivity(), TokoApplication.CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_baseline_error_outline_24)
+            .setContentTitle("Koneksi error")
+            .setContentText("Tidak dapat terhubung dengan internet")
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+        val notif = builder.build()
+        notificationManagerCompat.notify(1, notif)
     }
 
     private fun updateProgress(status: ApiStatus) {
@@ -59,6 +69,7 @@ class ImageFragment : Fragment() {
                 binding.progressBar.visibility = View.GONE
             }
             ApiStatus.FAILED -> {
+                notifNetworkFailed()
                 binding.progressBar.visibility = View.GONE
                 binding.networkError.visibility = View.VISIBLE
             }

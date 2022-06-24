@@ -1,6 +1,7 @@
 package org.d3if0060.assessment2.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -18,10 +19,11 @@ class HomeFragment : Fragment() {
 
     private lateinit var binding : FragmentHomeBinding
     private lateinit var homeAdapter: HomeAdapter
-    private lateinit var recyclerView: RecyclerView
 
-    private val fTokoViewModel: TokoViewModel by lazy{
-        ViewModelProvider(this)[TokoViewModel::class.java]
+    private val viewModel: TokoViewModel by lazy{
+        val db = TokoDb.getDataDb(requireContext())
+        val factory = TokoViewModelFactory(db.tokoDao())
+        ViewModelProvider(this, factory)[TokoViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -31,18 +33,20 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         setHasOptionsMenu(true)
+
         val view = binding.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        recyclerView = binding.recyclerViewHome
-        recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            homeAdapter = HomeAdapter()
+        homeAdapter = HomeAdapter()
+        with(binding.recyclerViewHome){
             adapter = homeAdapter
+            setHasFixedSize(true)
+        }
+
+        viewModel.data.observe(viewLifecycleOwner) {
+            homeAdapter.submitList(it)
         }
     }
 

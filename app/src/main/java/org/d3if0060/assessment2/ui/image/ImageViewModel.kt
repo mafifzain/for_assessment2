@@ -15,6 +15,7 @@ class ImageViewModel: ViewModel() {
     private val data = MutableLiveData<List<TokoImage>>()
     private val status = MutableLiveData<ApiStatus>()
 
+
     init {
         retriveImage()
     }
@@ -31,6 +32,8 @@ class ImageViewModel: ViewModel() {
             }
         }
     }
+
+
 
     fun getData(): LiveData<List<TokoImage>> = data
     fun getStatus(): LiveData<ApiStatus> = status
