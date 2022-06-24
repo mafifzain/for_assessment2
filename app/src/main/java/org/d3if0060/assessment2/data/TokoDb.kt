@@ -14,18 +14,19 @@ abstract class TokoDb: RoomDatabase() {
         private var INSTANCE: TokoDb? = null
 
         fun getDataDb(context: Context): TokoDb {
-            val instance = INSTANCE
-            if (instance != null){
-                return instance
-            }
-            synchronized(this){
+            return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     TokoDb::class.java,
-                    "forassessment_table"
-                ).build()
+                    "item_database"
+                )
+                    // Wipes and rebuilds instead of migrating if no Migration object.
+                    // Migration is not part of this codelab.
+                    .fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
-                return instance
+                // return instance
+                instance
             }
         }
     }

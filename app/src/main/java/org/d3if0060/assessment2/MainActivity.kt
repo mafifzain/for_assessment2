@@ -2,20 +2,25 @@ package org.d3if0060.assessment2
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(R.layout.activity_main) {
+
+    private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        setupActionBarWithNavController(findNavController(R.id.fragmentHost))
+        val navHostFragment = supportFragmentManager
+            .findFragmentById(R.id.fragmentHost) as NavHostFragment
+        navController = navHostFragment.navController
+
+        setupActionBarWithNavController(this, navController)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.fragmentHost)
-        return navController.navigateUp() || super.onNavigateUp()
+        return navController.navigateUp() || super.onSupportNavigateUp()
     }
 }

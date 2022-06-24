@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_homeFragment_to_additemFragment"
             app:destination="@id/additemFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_imageFragment"
+            app:destination="@id/imageFragment" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -49,5 +52,14 @@
         <argument
             android:name="currToko"
             app:argType="org.d3if0060.assessment2.data.TokoEntity" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageFragment"
+        android:name="org.d3if0060.assessment2.ui.image.ImageFragment"
+        android:label="fragment_image"
+        tools:layout="@layout/fragment_image" >
+        <action
+            android:id="@+id/action_imageFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

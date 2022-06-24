@@ -16,6 +16,7 @@
     <string name="view">View</string>
     <string name="delete">Delete</string>
     <string name="share">Share</string>
+    <string name="image">Image</string>
     <string name="share_template">
         Nama Toko: %1$s\n
         Alamat Toko: %2$s\n

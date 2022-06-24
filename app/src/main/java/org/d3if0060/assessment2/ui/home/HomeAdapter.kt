@@ -9,35 +9,31 @@ import androidx.recyclerview.widget.RecyclerView
 import org.d3if0060.assessment2.R
 import org.d3if0060.assessment2.data.TokoEntity
 import kotlinx.android.synthetic.main.item_group_show.view.*
+import org.d3if0060.assessment2.databinding.ItemGroupShowBinding
 
 class HomeAdapter: RecyclerView.Adapter<HomeAdapter.MyViewHolder>() {
 
-    private var entityList = emptyList<TokoEntity>()
+    private val data = mutableListOf<TokoEntity>()
 
-    class MyViewHolder(dataView: View): RecyclerView.ViewHolder(dataView){  }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_group_show, parent, false))
-    }
-
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        val currentItem = entityList[position]
-        holder.itemView.namaTokoView_show.text = currentItem.namaToko.toString()
-        holder.itemView.alamatTokoView_show.text = currentItem.alamatToko.toString()
-        holder.itemView.deskripsiTokoView_show.text = currentItem.deskripsiToko.toString()
-
-        holder.itemView.currRow.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToViewitemFragment(currentItem)
-            holder.itemView.findNavController().navigate(action)
+    class MyViewHolder(private val binding: ItemGroupShowBinding): RecyclerView.ViewHolder(binding.root){
+        fun bind(tokoEntity: TokoEntity) = with(binding){
+            namaTokoViewShow.text = tokoEntity.namaToko
+            alamatTokoViewShow.text = tokoEntity.alamatToko
+            deskripsiTokoViewShow.text = tokoEntity.deskripsiToko
         }
     }
 
-    override fun getItemCount(): Int {
-        return entityList.size
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val inflater = LayoutInflater.from(parent.context)
+        val binding = ItemGroupShowBinding.inflate(inflater, parent, false)
+        return MyViewHolder(binding)
     }
 
-    fun setData(entity: List<TokoEntity>){
-        this.entityList = entity
-        notifyDataSetChanged()
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+        holder.bind(data[position])
+    }
+
+    override fun getItemCount(): Int {
+        return data.size
     }
 }
