@@ -22,4 +22,5 @@
         Alamat Toko: %2$s\n
         Deskripsi Toko: %3$s
     </string>
+    <string name="koneksi_error">Koneksi Error</string>
 </resources>

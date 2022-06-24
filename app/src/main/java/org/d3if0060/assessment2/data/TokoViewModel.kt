@@ -4,24 +4,15 @@ import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.d3if0060.assessment2.network.ApiStatus
 import org.d3if0060.assessment2.network.TokoApi
 
 class TokoViewModel(private val tokoDao: TokoDao): ViewModel() {
-    fun getAllDataToko(): LiveData<List<TokoEntity>> = tokoDao.getDataToko()
+    private val data = MutableLiveData<List<TokoImage>>()
+
 
     init {
-        retriveImage()
-    }
 
-    private fun retriveImage(){
-        viewModelScope.launch (Dispatchers.IO) {
-            try {
-                val result = TokoApi.service.getImage()
-                Log.d("TokoViewModel", "Success: $result")
-            } catch (e: Exception) {
-                Log.d("TokoViewModel", "Failure: ${e.message}")
-            }
-        }
     }
 
     fun addToko(tokoEntity: TokoEntity){
@@ -35,6 +26,9 @@ class TokoViewModel(private val tokoDao: TokoDao): ViewModel() {
             tokoDao.delete(tokoEntity)
         }
     }
+
+    fun getData(): LiveData<List<TokoImage>> = data
+
 }
 
 class TokoViewModelFactory(private val tokoDao: TokoDao): ViewModelProvider.Factory {
